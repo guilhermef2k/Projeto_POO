@@ -1,18 +1,18 @@
 package repository;
-import java.util.ArrayList;
-import java.util.List;
-import model.Produto;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Produto;
 
 public class ProdutoRepository {
     private List<Produto> produtos;
     private final String caminho = "produtos.txt"; 
-
+    
     public ProdutoRepository(){
         this.produtos = new ArrayList<>();
         carregarDadosDoArquivo();
