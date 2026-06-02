@@ -1,3 +1,9 @@
+package service;
+
+import model.Funcionario;
+import model.exceptions.FuncionarioNotFoundException;
+import repository.FuncionarioRepository;
+
 public class FuncionarioService {
     private FuncionarioRepository funcionarioRepository;
 

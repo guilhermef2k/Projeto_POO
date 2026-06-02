@@ -1,3 +1,9 @@
+package service;
+
+import model.Client;
+import model.exceptions.ClientNotFoundException;
+import repository.ClientRepository;
+
 public class ClientService {
     private ClientRepository clientRepository;
 
