@@ -1,5 +1,4 @@
 import controller.ProdutoController;
-import model.Produto;
 
 public class App {
 
@@ -17,7 +16,7 @@ public class App {
         );
         System.out.println(resultadoCadastro2);
 
-        System.out.println("\n--- TESTE DE REGRAS DE NEGOCIO (ERRO ESPERADO) ---");
+        /*System.out.println("\n--- TESTE DE REGRAS DE NEGOCIO (ERRO ESPERADO) ---");
         String resultadoDuplicado = produtoController.cadastrarProduto(
                 "BAT-001", "Outro Batom", "Mac", "Maquiagem", 10.00, 20.00, 10, 2
         );
@@ -46,6 +45,6 @@ public class App {
         System.out.println("\n--- ESTADO FINAL DO ESTOQUE ---");
         for (Produto produto : produtoController.listarTodos()) {
             System.out.println(produto.toString());
-        }
+        }*/
     }
 }
