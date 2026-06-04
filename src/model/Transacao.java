@@ -18,7 +18,6 @@ public class Transacao {
     private Funcionario funcionario;
     private double valorTotal;
 
-    // Construtor para VENDA
     public Transacao(String id, Cliente cliente) {
         this.id = id;
         this.tipo = TipoTransacao.VENDA;
@@ -29,7 +28,6 @@ public class Transacao {
         this.valorTotal = 0.0;
     }
 
-    // Construtor para COMPRA
     public Transacao(String id, Funcionario funcionario) {
         this.id = id;
         this.tipo = TipoTransacao.COMPRA;
@@ -40,7 +38,6 @@ public class Transacao {
         this.valorTotal = 0.0;
     }
 
-    // Getters
     public String getId() {
         return id;
     }
@@ -69,7 +66,6 @@ public class Transacao {
         return valorTotal;
     }
 
-    // Métodos do Carrinho
     public void adicionarItem(ItemTransacao item) {
         if (item == null) {
             throw new IllegalArgumentException("O item da transação não pode ser nulo.");
@@ -101,7 +97,6 @@ public class Transacao {
         return itens.size();
     }
 
-    // toString
     @Override
     public String toString() {
         return "Transacao{" +
