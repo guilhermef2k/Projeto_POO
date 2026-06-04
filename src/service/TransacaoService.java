@@ -31,6 +31,7 @@ public class TransacaoService {
     public void concluirTransacao(Transacao transacao) {
         validarEstoqueDisponivel(transacao);
         validarTransacao(transacao);
+        validarIdUnico(transacao.getId());
 
         for (ItemTransacao item : transacao.getItens()) {
             String codigo = item.getProduto().getCodigo();
