@@ -46,6 +46,20 @@ public class TransacaoRepository {
         }
     }
 
+    public boolean existeTransacaoComId(String id) {
+        if (id == null || id.isEmpty()) {
+            return false;
+        }
+
+        for (Transacao transacao : transacoes) {
+            if (transacao.getId().equals(id)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void salvarNoArquivo(Transacao transacao) {
         criarArquivoSeNecessario();
 

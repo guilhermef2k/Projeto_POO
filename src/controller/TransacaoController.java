@@ -21,10 +21,26 @@ public class TransacaoController {
     }
 
     public Transacao iniciarVenda(String id, Cliente cliente) {
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("O ID da transação não pode ser vazio.");
+        }
+        if (cliente == null) {
+            throw new IllegalArgumentException("O cliente não pode ser nulo.");
+        }
+
+        transacaoService.validarIdUnico(id);
         return new Transacao(id, cliente);
     }
 
     public Transacao iniciarCompra(String id, Funcionario funcionario) {
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("O ID da transação não pode ser vazio.");
+        }
+        if (funcionario == null) {
+            throw new IllegalArgumentException("O funcionário não pode ser nulo.");
+        }
+
+        transacaoService.validarIdUnico(id);
         return new Transacao(id, funcionario);
     }
 
