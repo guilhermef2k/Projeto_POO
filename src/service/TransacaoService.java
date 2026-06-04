@@ -68,4 +68,14 @@ public class TransacaoService {
             throw new IllegalArgumentException("A transação não pode ser nula.");
         }
     }
+
+    public void validarIdUnico(String id) {
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("O ID da transação não pode ser vazio.");
+        }
+
+        if (transacaoRepository.existeTransacaoComId(id)) {
+            throw new IllegalArgumentException("Já existe uma transação com o ID: " + id);
+        }
+    }
 }

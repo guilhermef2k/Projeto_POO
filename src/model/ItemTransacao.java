@@ -5,14 +5,12 @@ public class ItemTransacao {
     private int quantidade;
     private double precoUnitario;
 
-    // Construtor
     public ItemTransacao(Produto produto, int quantidade, double precoUnitario) {
         this.produto = produto;
         setQuantidade(quantidade);
         setPrecoUnitario(precoUnitario);
     }
 
-    // Getters
     public Produto getProduto() {
         return produto;
     }
@@ -25,7 +23,6 @@ public class ItemTransacao {
         return precoUnitario;
     }
 
-    // Setters
     public void setQuantidade(int quantidade) {
         if (quantidade <= 0) {
             throw new IllegalArgumentException("A quantidade deve ser maior que zero.");
@@ -40,12 +37,10 @@ public class ItemTransacao {
         this.precoUnitario = precoUnitario;
     }
 
-    // Método de cálculo
     public double calcularSubtotal() {
         return quantidade * precoUnitario;
     }
 
-    // toString para visualização
     @Override
     public String toString() {
         return "ItemTransacao{" +
