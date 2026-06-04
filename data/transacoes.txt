@@ -1,0 +1,1 @@
+VND-004;VENDA;2026-06-04T14:49:35.630427300;model.Cliente@d716361;;98.0;Baton Matte,2,35.0,70.0|Shampoo Neutro,1,28.0,28.0

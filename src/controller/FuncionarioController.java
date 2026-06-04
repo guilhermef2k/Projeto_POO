@@ -19,14 +19,8 @@ public class FuncionarioController {
         System.out.println(funcionarioService.editarFuncionario(cpf, nome, email, senha, cargo));
     }
 
-    public void buscarPorCpf(String cpf) {
-        Funcionario funcionario = funcionarioService.buscarFuncionarioPorCpf(cpf);
-
-        if (funcionario == null) {
-            System.out.println("✗ Funcionário com CPF " + cpf + " não encontrado");
-        } else {
-            System.out.println("Funcionário encontrado: " + funcionario.getNome());
-        }
+    public Funcionario buscarPorCpf(String cpf) {
+        return funcionarioService.buscarFuncionarioPorCpf(cpf);
     }
 
     public void listar() {

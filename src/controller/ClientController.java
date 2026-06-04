@@ -18,14 +18,8 @@ public class ClientController {
         System.out.println(clientService.editarClient(cpf, nome, email, senha, endereco, telefone));
     }
 
-    public void buscarPorCpf(String cpf) {
-        Cliente client = clientService.buscarClientPorCpf(cpf);
-
-        if (client == null) {
-            System.out.println("✗ Cliente com CPF " + cpf + " não encontrado");
-        } else {
-            System.out.println("Cliente encontrado: " + client.getNome());
-        }
+    public Cliente buscarPorCpf(String cpf) {
+        return clientService.buscarClientPorCpf(cpf);
     }
 
     public void listar() {

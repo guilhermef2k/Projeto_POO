@@ -5,16 +5,15 @@ import model.ItemTransacao;
 import model.Produto;
 import model.Transacao;
 import repository.TransacaoRepository;
+import model.Transacao.TipoTransacao;
 
 public class TransacaoService {
     private TransacaoRepository transacaoRepository;
+    private ProdutoService produtoService;
 
     public TransacaoService() {
-        /*if (transacaoRepository == null) {
-            throw new IllegalArgumentException("O repositório de transações não pode ser nulo.");
-        }*/
-
         this.transacaoRepository = new TransacaoRepository();
+        this.produtoService = new ProdutoService();
     }
 
     public double calcularValorTotal(Transacao transacao) {
@@ -30,20 +29,21 @@ public class TransacaoService {
     }
 
     public void concluirTransacao(Transacao transacao) {
+        validarEstoqueDisponivel(transacao);
         validarTransacao(transacao);
 
-        if (transacao.getItens().isEmpty()) {
-            throw new IllegalArgumentException("A transação deve possuir pelo menos um item.");
+        for (ItemTransacao item : transacao.getItens()) {
+            String codigo = item.getProduto().getCodigo();
+            int quantidade = item.getQuantidade();
+
+            if (transacao.getTipo().equals(TipoTransacao.VENDA)) { 
+                produtoService.atualizarEstoque(codigo, -quantidade);
+            } 
+            else if (transacao.getTipo() == TipoTransacao.COMPRA) { 
+                produtoService.atualizarEstoque(codigo, quantidade);
+            }
         }
 
-        if (transacao.getTipo() == Transacao.TipoTransacao.VENDA) {
-            validarEstoqueDisponivel(transacao);
-            baixarEstoque(transacao);
-        } else {
-            reporEstoque(transacao);
-        }
-
-        transacao.calcularValorTotal();
         transacaoRepository.salvar(transacao);
     }
 
@@ -63,26 +63,8 @@ public class TransacaoService {
         }
     }
 
-    private void baixarEstoque(Transacao transacao) {
-        for (ItemTransacao item : transacao.getItens()) {
-            Produto produto = item.getProduto();
-
-            int novoEstoque = produto.getEstoque() - item.getQuantidade();
-            produto.setEstoque(novoEstoque);
-        }
-    }
-
-    private void reporEstoque(Transacao transacao) {
-        for (ItemTransacao item : transacao.getItens()) {
-            Produto produto = item.getProduto();
-
-            int novoEstoque = produto.getEstoque() + item.getQuantidade();
-            produto.setEstoque(novoEstoque);
-        }
-    }
-
     private void validarTransacao(Transacao transacao) {
-        if (transacao == null) {
+        if (transacao == null || transacao.getItens() == null || transacao.getItens().isEmpty()) {
             throw new IllegalArgumentException("A transação não pode ser nula.");
         }
     }
